@@ -1,0 +1,38 @@
+# Билд проекта (из папки 'project14'), при котором создастся нужный контейнер:
+# docker-compose build
+#
+# Запустим контейнер:
+# docker-compose up -d
+#
+# Посмотреть на вывод логов докера:
+# docker-compose logs -f
+#
+# миграции
+# docker-compose exec web python manage.py migrate --noinput
+#
+# команды:
+# docker-compose exec db psql --username=django_user --dbname=django_db
+# \l
+# \dt
+#
+# Проверить, что у нас был создан том для базы можно так:
+# docker volume ls
+# docker volume inspect project14_postgres_volume
+#
+#
+#
+#
+# Тестирование работы образов и возможные ошибки
+#
+# Выполним остановку предыдущих контейнеров и создадим новые. При этом выполним миграции и соберем все статические файлы:
+#
+# docker-compose down -v
+# docker-compose -f docker-compose.prod.yml up -d --build
+# docker-compose -f docker-compose.prod.yml exec web python manage.py migrate --noinput
+# docker-compose -f docker-compose.prod.yml exec web python manage.py collectstatic --no-input --clear
+#
+#
+# localhost:1337
+#
+#
+# docker-compose logs
