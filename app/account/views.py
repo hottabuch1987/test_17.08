@@ -22,7 +22,7 @@ class SendAuthCode(APIView):
             user.invite_code = ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(6))
             user.auth_code = ''.join(random.choice(string.digits) for _ in range(4))
             if password:
-                user.set_password(password)  # Установка пароля
+                user.set_password(password)
             user.save()
             time.sleep(1)
             return Response({"message": "Пользователь создан. Код авторизации отправлен.", "auth_code": user.auth_code,
